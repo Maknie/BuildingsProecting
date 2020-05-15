@@ -22,10 +22,13 @@ public class Main {
             building.getRoom("Room 2").add(new Furniture("Armchair", 15));
         } catch (IlluminanceTooMuchException e) {
             e.printStackTrace();
+            logger.error("IlluminanceTooMuchException has been thrown");
         } catch (IlluminanceNotEnoughException e) {
             e.printStackTrace();
+            logger.error("IlluminanceNotEnoughException has been thrown");
         } catch (SpaceUsageTooMuchException e) {
             e.printStackTrace();
+            logger.error("SpaceUsageTooMuchException has been thrown");
         }
         building.describe();
     }
