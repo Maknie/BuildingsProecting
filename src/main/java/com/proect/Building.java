@@ -2,7 +2,6 @@ package com.proect;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.util.ArrayList;
 
 public class Building {
@@ -11,7 +10,6 @@ public class Building {
     private ArrayList<Room> roomsList = new ArrayList<>();
 
     public Building(String name) {
-        LogManager.getLogger();
         this.name = name;
     }
 
@@ -25,7 +23,7 @@ public class Building {
                 return room;
             }
         }
-        throw new RuntimeException();
+        throw new NotFoundSuchRoomException("There's no such room");
     }
 
     public void describe() {

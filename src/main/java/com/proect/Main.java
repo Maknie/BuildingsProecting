@@ -16,19 +16,20 @@ public class Main {
             building.getRoom("Room 1").add(new LightBulb(450));
             building.getRoom("Room 1").add(new Furniture("Work table", 15));
             building.getRoom("Room 1").add(new Furniture("Bed", 25));
+            building.getRoom("Room 1").add(new Furniture("Bed 2", 75));
             building.getRoom("Room 2").add(new LightBulb(250));
             building.getRoom("Room 2").add(new LightBulb(50));
             building.getRoom("Room 2").add(new Furniture("Couch", 35));
             building.getRoom("Room 2").add(new Furniture("Armchair", 15));
         } catch (IlluminanceTooMuchException e) {
             e.printStackTrace();
-            logger.error("IlluminanceTooMuchException has been thrown");
+            logger.error("IlluminanceTooMuchException has been thrown", e);
         } catch (IlluminanceNotEnoughException e) {
             e.printStackTrace();
-            logger.error("IlluminanceNotEnoughException has been thrown");
+            logger.error("IlluminanceNotEnoughException has been thrown", e);
         } catch (SpaceUsageTooMuchException e) {
             e.printStackTrace();
-            logger.error("SpaceUsageTooMuchException has been thrown");
+            logger.error("SpaceUsageTooMuchException has been thrown", e);
         }
         building.describe();
     }

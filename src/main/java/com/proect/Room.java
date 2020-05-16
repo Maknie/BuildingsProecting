@@ -15,7 +15,6 @@ public class Room {
     private ArrayList<InRoomItem> inRoomItemsList = new ArrayList<>();
 
     public Room(String name, float fullArea, int windowsQuantity) throws IlluminanceTooMuchException, IlluminanceNotEnoughException {
-
         this.name = name;
         this.fullArea = fullArea;
         this.filledArea = 0;
@@ -85,15 +84,15 @@ public class Room {
 
     public void addIlluminance(int newIlluminance) throws IlluminanceNotEnoughException, IlluminanceTooMuchException {
         if (this.getIlluminanceLevel() + newIlluminance < ConstValuesEnum.MIN_ILLUMINANCE.getValue())
-            throw new IlluminanceNotEnoughException();
+            throw new IlluminanceNotEnoughException("Not enough illuminance in room. Too dark");
         if (this.getIlluminanceLevel() + newIlluminance > ConstValuesEnum.MAX_ILLUMINANCE.getValue())
-            throw new IlluminanceTooMuchException();
+            throw new IlluminanceTooMuchException("Too much illuminance in room. Too bright");
         illuminanceLevel += newIlluminance;
     }
 
     public void addFurniture(float furnitureArea) throws SpaceUsageTooMuchException {
         if (this.getFilledArea() + furnitureArea > ConstValuesEnum.MAX_ROOM_SPACE.getValue() * getFullArea() / 100)
-            throw new SpaceUsageTooMuchException();
+            throw new SpaceUsageTooMuchException("You filled room over " + ConstValuesEnum.MAX_ROOM_SPACE.getValue() + "%");
         this.filledArea += furnitureArea;
     }
 

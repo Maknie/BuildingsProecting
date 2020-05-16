@@ -12,7 +12,6 @@ public enum ConstValuesEnum {
         value = newValue;
     }
 
-
     public int getValue() {
         return value;
     }
