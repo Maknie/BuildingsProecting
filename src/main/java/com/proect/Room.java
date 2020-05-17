@@ -2,7 +2,6 @@ package com.proect;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.util.ArrayList;
 
 public class Room {
@@ -67,7 +66,6 @@ public class Room {
         } else if (inRoomItem instanceof LightBulb) {
             illuminanceLevelInRoom -= ((LightBulb) inRoomItem).getIlluminanceLevel();
         }
-
     }
 
     public void describe() {

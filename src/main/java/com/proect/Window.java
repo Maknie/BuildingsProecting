@@ -1,6 +1,6 @@
 package com.proect;
 
-public class Window implements Luminous{
+public class Window implements Luminous {
     private int illuminanceLevel;
 
     public Window() {
