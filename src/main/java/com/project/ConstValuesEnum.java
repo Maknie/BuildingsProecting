@@ -1,4 +1,4 @@
-package com.proect;
+package com.project;
 
 public enum ConstValuesEnum {
     MAX_ILLUMINANCE(4000),

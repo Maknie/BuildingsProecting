@@ -1,4 +1,4 @@
-package com.proect;
+package com.project;
 
 public class IlluminanceTooMuchException extends Exception{
     public IlluminanceTooMuchException(String message) {

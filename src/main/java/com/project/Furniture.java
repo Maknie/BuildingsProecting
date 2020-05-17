@@ -1,4 +1,4 @@
-package com.proect;
+package com.project;
 
 public class Furniture implements InRoomItem {
     private String name;

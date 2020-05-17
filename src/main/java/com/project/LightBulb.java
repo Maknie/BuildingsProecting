@@ -1,4 +1,4 @@
-package com.proect;
+package com.project;
 
 public class LightBulb implements InRoomItem, Luminous {
     private int illuminanceLevel;
