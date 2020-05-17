@@ -10,15 +10,15 @@ public class Room {
     private String name;
     private float fullArea;
     private float filledArea;
-    private int windowsQuantity;
-    private int illuminanceLevel;
+    private int illuminanceLevelInRoom;
     private ArrayList<InRoomItem> inRoomItemsList = new ArrayList<>();
+    private ArrayList<Window> windowsList = new ArrayList<>();
 
     public Room(String name, float fullArea, int windowsQuantity) throws IlluminanceTooMuchException, IlluminanceNotEnoughException {
         this.name = name;
         this.fullArea = fullArea;
         this.filledArea = 0;
-        this.windowsQuantity = windowsQuantity;
+        windowsList = fillWindowsList(windowsQuantity);
         addIlluminance(windowsQuantity * ConstValuesEnum.WINDOW_ILLUMINANCE.getValue());
     }
 
@@ -65,7 +65,7 @@ public class Room {
         if (inRoomItem instanceof Furniture) {
             filledArea += ((Furniture) inRoomItem).getArea();
         } else if (inRoomItem instanceof LightBulb) {
-            illuminanceLevel -= ((LightBulb) inRoomItem).getIlluminanceLevel();
+            illuminanceLevelInRoom -= ((LightBulb) inRoomItem).getIlluminanceLevel();
         }
 
     }
@@ -74,7 +74,7 @@ public class Room {
         double percent = 100.0 - Math.floor(this.getFilledArea() / this.getFullArea() * 100);
         double freeSpace = this.getFullArea() - this.getFilledArea();
         logger.info(this.getName() + "\n");
-        logger.info("Illuminance in room is " + this.getIlluminanceLevel() + ": ");
+        logger.info("Illuminance in room is " + this.getIlluminanceLevelInRoom() + ": ");
         logger.info("(" + this.getWindowsQuantity() + " windows, each makes " + ConstValuesEnum.WINDOW_ILLUMINANCE.getValue() + "lx )");
         this.getInRoomLightBulbs();
         logger.info("Area in room is " + this.getFullArea() + "( Filled: " + this.getFilledArea() + "m^2, " + "Free place area is " + freeSpace + "m^2 or " + percent + "% )");
@@ -83,11 +83,11 @@ public class Room {
     }
 
     public void addIlluminance(int newIlluminance) throws IlluminanceNotEnoughException, IlluminanceTooMuchException {
-        if (this.getIlluminanceLevel() + newIlluminance < ConstValuesEnum.MIN_ILLUMINANCE.getValue())
+        if (this.getIlluminanceLevelInRoom() + newIlluminance < ConstValuesEnum.MIN_ILLUMINANCE.getValue())
             throw new IlluminanceNotEnoughException("Not enough illuminance in room. Too dark");
-        if (this.getIlluminanceLevel() + newIlluminance > ConstValuesEnum.MAX_ILLUMINANCE.getValue())
+        if (this.getIlluminanceLevelInRoom() + newIlluminance > ConstValuesEnum.MAX_ILLUMINANCE.getValue())
             throw new IlluminanceTooMuchException("Too much illuminance in room. Too bright");
-        illuminanceLevel += newIlluminance;
+        illuminanceLevelInRoom += newIlluminance;
     }
 
     public void addFurniture(float furnitureArea) throws SpaceUsageTooMuchException {
@@ -96,12 +96,20 @@ public class Room {
         this.filledArea += furnitureArea;
     }
 
-    public int getIlluminanceLevel() {
-        return illuminanceLevel;
+    private ArrayList<Window> fillWindowsList(int windowsQuantity) {
+        ArrayList<Window> windowsList = new ArrayList<Window>();
+        for (int i = 0; i < windowsQuantity; i++) {
+            windowsList.add(new Window());
+        }
+        return windowsList;
+    }
+
+    public int getIlluminanceLevelInRoom() {
+        return illuminanceLevelInRoom;
     }
 
     public int getWindowsQuantity() {
-        return windowsQuantity;
+        return windowsList.size();
     }
 
     public String getName() {

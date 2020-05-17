@@ -16,7 +16,6 @@ public class Main {
             building.getRoom("Room 1").add(new LightBulb(450));
             building.getRoom("Room 1").add(new Furniture("Work table", 15));
             building.getRoom("Room 1").add(new Furniture("Bed", 25));
-            building.getRoom("Room 1").add(new Furniture("Bed 2", 75));
             building.getRoom("Room 2").add(new LightBulb(250));
             building.getRoom("Room 2").add(new LightBulb(50));
             building.getRoom("Room 2").add(new Furniture("Couch", 35));
